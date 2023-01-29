@@ -45,7 +45,7 @@ const OrderPage: FC = () => {
       case 1:
         return <Tag color="cyan">Đang chờ xác nhận</Tag>;
       default:
-        break;
+        return <Tag color="yellow">Đang chờ xử lý</Tag>;
     }
   }, []);
 
@@ -56,9 +56,9 @@ const OrderPage: FC = () => {
       case 3:
         return <Tag color="#f50">Đã huỷ</Tag>;
       case 2:
-        return <Tag color="purple">Đang vận chuyển</Tag>;
+        return <Tag color="purple">Đã giao cho đơn vị vận chuyển</Tag>;
       case 1:
-        return <Tag color="cyan">Đang chờ pha chế, đóng gói</Tag>;
+        return <Tag color="cyan">Đang chờ lấy hàng và đóng gói</Tag>;
       default:
         break;
     }

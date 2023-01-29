@@ -48,7 +48,6 @@ const Create: FC = () => {
       ],
     },
     onSubmit: async (values) => {
-      console.log(22, values);
       const { name, category_id, image, height, weight, width, content, slug, length, variant } =
         values;
       const formData = new FormData();
@@ -70,14 +69,7 @@ const Create: FC = () => {
             `variant[${i}][option][${j}][price]`,
             variant[i].option[j].price.toString()
           );
-          formData.append(
-            `variant[${i}][option][${j}][value]`,
-            variant[i].option[j].value.toString()
-          );
-          formData.append(
-            `variant[${i}][option][${j}][inventory]`,
-            variant[i].option[j].inventory.toString()
-          );
+          formData.append(`variant[${i}][option][${j}][value]`, variant[i].option[j].value);
         }
       }
       const resultAction = await dispatch(createProductThunk(formData));
@@ -140,10 +132,8 @@ const Create: FC = () => {
               </Form.Item>
             </Card>
             <Card title="Thông tin chi tiết" className="card">
-              <div>
-                Hình ảnh sản phẩm <br />
-                Khuyến nghị: Tải lên ít nhất 3 hình ảnh để giúp người mua tìm hiểu thêm
-              </div>
+              <p>Hình ảnh sản phẩm </p>
+              <p>Khuyến nghị: Tải lên ít nhất 3 hình ảnh để giúp người mua tìm hiểu thêm</p>
               <div className="list-image">
                 {formik.values.image &&
                   formik.values.image.map((item) => (
@@ -199,7 +189,7 @@ const Create: FC = () => {
                 name="variant"
                 render={(arrayHelpers) => (
                   <div>
-                    {formik.values.variant.map((_item, index) => (
+                    {formik.values.variant?.map((_item, index) => (
                       <div key={index}>
                         <Form.Item
                           name={`variant[${index}].name`}
@@ -217,24 +207,35 @@ const Create: FC = () => {
                           render={(arrayHelpers_option) => (
                             <div>
                               {formik.values.variant[index].option.map((option, i) => (
-                                <div key={index} style={{ display: 'flex' }}>
+                                <div key={index} className="array">
                                   <Form.Item
-                                    name={`variant[${index}].option[${i}].name`}
+                                    name={`variant[${index}].option[${i}].value`}
                                     label="Tùy chọn"
                                     className="form-input"
                                   >
                                     <Input
-                                      name={`variant[${index}].option[${i}].name`}
+                                      name={`variant[${index}].option[${i}].value`}
                                       className="text-input"
                                       placeholder="Nhập một tùy chọn"
                                     />
                                   </Form.Item>
-                                  <Button
-                                    className="btn btn-submit"
-                                    onClick={() => arrayHelpers_option.remove(index)}
+                                  <Form.Item
+                                    name={`variant[${index}].option[${i}].price`}
+                                    label={`Nhập gía ${option.value}: `}
+                                    className="form-input"
                                   >
-                                    -
-                                  </Button>
+                                    <Input
+                                      name={`variant[${index}].option[${i}].price`}
+                                      className="text-input"
+                                      placeholder="Nhập một tùy chọn"
+                                    />
+                                    <Button
+                                      className="btn btn-remove"
+                                      onClick={() => arrayHelpers_option.remove(index)}
+                                    >
+                                      -
+                                    </Button>
+                                  </Form.Item>
                                 </div>
                               ))}
                               <p
@@ -248,23 +249,6 @@ const Create: FC = () => {
                             </div>
                           )}
                         />
-                        {/* <Button
-                          className="btn btn-submit"
-                          onClick={() => arrayHelpers.remove(index)}
-                        >
-                          -
-                        </Button> */}
-                        <Button
-                          className="btn-add"
-                          onClick={() =>
-                            arrayHelpers.push({
-                              name: '',
-                              option: [],
-                            })
-                          }
-                        >
-                          <span className="button-label">+ Thêm biến thể</span>
-                        </Button>
                       </div>
                     ))}
                   </div>
@@ -281,9 +265,18 @@ const Create: FC = () => {
               </Form.Item>
               <p>Kích thước Sản phẩm</p>
               <div style={{ display: 'flex' }}>
-                <Input name="height" className="text-input" placeholder="Chiều cao (cm)" />
-                <Input name="width" className="text-input" placeholder="Chiều rộng (cm)" />
-                <Input name="length" className="text-input" placeholder="Chiều dài (cm)" />
+                <div>
+                  <label>Chiều cao (cm)</label>
+                  <Input name="height" className="text-input" placeholder="Chiều cao (cm)" />
+                </div>
+                <div>
+                  <label>Chiều rộng (cm)</label>
+                  <Input name="width" className="text-input" placeholder="Chiều rộng (cm)" />
+                </div>
+                <div>
+                  <label>Chiều dài (cm)</label>
+                  <Input name="length" className="text-input" placeholder="Chiều dài (cm)" />
+                </div>
               </div>
             </Card>
             <div className="wrap-submit">

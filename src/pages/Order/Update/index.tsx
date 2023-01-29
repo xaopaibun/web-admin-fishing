@@ -47,11 +47,11 @@ const STATUS_ORDER = [
 const STATUS_SHIP = [
   {
     value: 1,
-    label: 'Đang chờ pha chế, đóng gói',
+    label: 'Đang chờ lấy hàng và đóng gói',
   },
   {
     value: 2,
-    label: 'Đang vận chuyển',
+    label: 'Đã giao cho đơn vị vận chuyển',
   },
   {
     value: 3,
@@ -91,6 +91,7 @@ const Update: FC = () => {
       payment: 1,
       status: 1,
       date: '',
+      user_id: '',
       list_product: [],
       shipping_information: 1,
     },
@@ -117,6 +118,7 @@ const Update: FC = () => {
       formik.setFieldValue('list_product', orderDetail.list_product);
       formik.setFieldValue('status', orderDetail.status);
       formik.setFieldValue('date', orderDetail.date);
+      formik.setFieldValue('user_id', orderDetail.user_id);
       formik.setFieldValue('shipping_information', orderDetail.shipping_information);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

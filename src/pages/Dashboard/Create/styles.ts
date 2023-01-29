@@ -70,10 +70,39 @@ export default styled.section<Props>`
     align-items: center;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.06);
     .wrap-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
+      margin: auto;
+      z-index: 9;
+      .btn {
+        padding: 0 15px;
+        height: 40px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 700;
+        margin-left: 10px;
+      }
+      .btn-active,
+      .btn_submit {
+        background-color: #f6ac00;
+        border: 1px solid #f6ac00;
+        box-shadow: 1px 1px 4px rgba(68, 68, 68, 0.2);
+        border-radius: 5px;
+        color: #ffffff;
+        a {
+          color: unset;
+          &:hover {
+            color: unset;
+          }
+        }
+        .icon {
+          font-size: 18px;
+        }
+      }
     }
+  }
+  .array .ant-form-item-control-input-content {
+    display: flex;
+  }
+  .btn-remove {
+    height: 42px;
   }
 `;

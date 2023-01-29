@@ -30,6 +30,31 @@ export default styled.section<Props>`
       margin: 0 10px 0 7px;
     }
   }
+  .card {
+    margin: 20px 0;
+  }
+  .button-label {
+    color: #5244e5;
+    cursor: pointer;
+  }
+  .list-image {
+    display: flex;
+    flex-wrap: wrap;
+    .image,
+    .ant-upload-picture-card-wrapper {
+      width: 105px;
+      height: 105px;
+      margin-right: 10px;
+    }
+  }
+  .btn-add {
+    padding: 10px 16px;
+    border: 1px solid #5244e5;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .wrap-submit {
     height: 95px;
     width: calc(100% - 240px);
@@ -45,29 +70,39 @@ export default styled.section<Props>`
     align-items: center;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.06);
     .wrap-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
+      margin: auto;
+      z-index: 9;
       .btn {
-        border-radius: 5px;
-        border: none;
-        width: 16%;
+        padding: 0 15px;
         height: 40px;
         cursor: pointer;
-        &_submit {
-          margin-right: 12px;
-          color: #ffffff;
-          background-color: #f6ac00;
-          box-shadow: 1px 1px 4px rgba(68, 68, 68, 0.2);
+        font-size: 13px;
+        font-weight: 700;
+        margin-left: 10px;
+      }
+      .btn-active,
+      .btn_submit {
+        background-color: #f6ac00;
+        border: 1px solid #f6ac00;
+        box-shadow: 1px 1px 4px rgba(68, 68, 68, 0.2);
+        border-radius: 5px;
+        color: #ffffff;
+        a {
+          color: unset;
+          &:hover {
+            color: unset;
+          }
         }
-        &_close {
-          background: #ffffff;
-          border: 1px solid #d9d9d9;
-          box-shadow: 1px 1px 4px rgba(68, 68, 68, 0.2);
-          color: #777777;
+        .icon {
+          font-size: 18px;
         }
       }
     }
+  }
+  .array .ant-form-item-control-input-content {
+    display: flex;
+  }
+  .btn-remove {
+    height: 42px;
   }
 `;

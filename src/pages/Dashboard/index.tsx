@@ -247,7 +247,7 @@ const Dashboard: FC = () => {
           </div>
         ) : null}
         <div className="wrap-button">
-          <Button className="btn btn-active" icon={<CloudUploadOutlined className="icon" />}>
+          {/* <Button className="btn btn-active" icon={<CloudUploadOutlined className="icon" />}>
             Tải Lên
           </Button>
           <Button className="btn btn-active" icon={<CloudDownloadOutlined className="icon" />}>
@@ -255,7 +255,7 @@ const Dashboard: FC = () => {
               {' '}
               Tải Xuống
             </CSVLink>
-          </Button>
+          </Button> */}
           <Button
             className="btn btn-active"
             icon={<PlusOutlined className="icon" />}

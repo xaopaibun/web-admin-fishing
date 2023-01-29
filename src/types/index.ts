@@ -21,6 +21,10 @@ export interface Product {
   image: Array<File>;
   content: string;
   slug: string;
+  width: number;
+  height: number;
+  length: number;
+  weight: number;
   variant: Array<VariantItem>;
 }
 
@@ -41,7 +45,7 @@ interface VariantItem {
 export interface PayloadCreateProduct {
   category_id: string;
   name: string;
-  image: Array<File>;
+  image: Array<File | string>;
   content: string;
   slug: string;
   width: number;
@@ -78,6 +82,7 @@ export interface Order {
   total_money: number;
   address: string;
   payment: number;
+  user_id: string;
   shipping_information: number;
   list_product: Array<{
     _id: string;

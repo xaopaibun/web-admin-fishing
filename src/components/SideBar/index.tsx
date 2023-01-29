@@ -91,19 +91,19 @@ const SideBar: React.FC = ({ children }) => {
   return (
     <Wrapper>
       <Sider width={240} className="sider" trigger={null} collapsedWidth={219} collapsible>
-        <div className="site-layout-background">
+        {/* <div className="site-layout-background">
           {true ? (
             <MenuUnfoldOutlined className="trigger" onClick={toggle} />
           ) : (
             <MenuFoldOutlined className="trigger" onClick={toggle} />
           )}
-        </div>
+        </div> */}
         <div className="wrap-logo">
           <img
             src={
               true
-                ? 'https://ourdesigncenter.net/wp-content/uploads/2020/08/logo-coffee-shop-7.jpg'
-                : 'https://ourdesigncenter.net/wp-content/uploads/2020/08/logo-coffee-shop-7.jpg'
+                ? 'https://img.freepik.com/premium-vector/fishing-creative-logo-design-template_74472-381.jpg?w=2000'
+                : 'https://img.freepik.com/premium-vector/fishing-creative-logo-design-template_74472-381.jpg?w=2000g'
             }
             className={!true ? 'image-logo' : 'image-logo-large'}
             onClick={() => navigate(routes.Dashboard.path)}
