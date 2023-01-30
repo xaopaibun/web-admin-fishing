@@ -8,7 +8,7 @@ export const instance = axios.create({
 });
 instance.interceptors.request.use(
   (defaultConfig) => {
-    const accessToken = localStorage.getItem('coffee-house-token');
+    const accessToken = localStorage.getItem('shop-fish-token');
     defaultConfig.headers = {
       ...defaultConfig.headers,
       Authorization: `Bearer ${accessToken}`,
@@ -31,7 +31,7 @@ instance.interceptors.response.use(
 //   instance.interceptors.request.use(
 //     (defaultConfig) => {
 //       console.log('acb');
-//       const accessToken = localStorage.getItem('coffee-house-token');
+//       const accessToken = localStorage.getItem('shop-fish-token');
 //       defaultConfig.headers = {
 //         ...defaultConfig.headers,
 //         Authorization: `Bearer ${accessToken}`,

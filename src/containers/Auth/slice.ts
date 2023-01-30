@@ -22,7 +22,7 @@ export const authSlice = createSlice({
       state.isLogin = false;
       state.user = {} as UserAuth;
       // state.signedInEmail = undefined;
-      localStorage.setItem('isLogin', '0');
+      // localStorage.setItem('isLogin', '0');
       localStorage.clear();
     },
   },
@@ -35,8 +35,7 @@ export const authSlice = createSlice({
       state.isLogin = true;
       state.loading = false;
       state.user = action.payload.user;
-      localStorage.setItem('coffee-house-token', action.payload.tokens.access.token);
-      localStorage.setItem('isLogin', '1');
+      localStorage.setItem('shop-fish-token', action.payload.tokens.access.token);
     });
     builder.addCase(signIn.rejected, (state) => {
       state.isLogin = true;

@@ -164,4 +164,7 @@ export const Wrapper = styled.div`
       color: #00a3a5;
     }
   }
+  .anticon.anticon-logout {
+    color: #000000;
+  }
 `;

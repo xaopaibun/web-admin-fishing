@@ -14,7 +14,7 @@ type GuardRouteProps = {
 };
 
 export const Navigations: FC = () => {
-  const isLogin = localStorage.getItem('isLogin') === '1';
+  const { isLogin } = useSelector(authSelector);
   const renderRoute = useCallback(
     (route, isPrivate?: boolean) => {
       if (!route || !values(route)) {

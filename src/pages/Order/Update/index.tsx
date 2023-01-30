@@ -154,7 +154,7 @@ const Update: FC = () => {
               {formik.values.list_product &&
                 formik.values.list_product.map((item, index) => (
                   <li key={index}>
-                    {item.name}: {item.quantity}{' '}
+                    - {item.name}: {item.quantity}{' '}
                   </li>
                 ))}
             </ul>
@@ -190,7 +190,7 @@ const Update: FC = () => {
               }
               className="form-input"
             >
-              <Select name="status" allowClear>
+              <Select name="status" allowClear disabled={formik.values.status === (3 || 4)}>
                 {STATUS_ORDER.map((item, index) => (
                   <Option key={index} value={item.value}>
                     {item.label}
@@ -208,7 +208,11 @@ const Update: FC = () => {
               }
               className="form-input"
             >
-              <Select name="shipping_information" allowClear>
+              <Select
+                name="shipping_information"
+                allowClear
+                disabled={formik.values.shipping_information === (3 || 4)}
+              >
                 {STATUS_SHIP.map((item, index) => (
                   <Option key={index} value={item.value}>
                     {item.label}

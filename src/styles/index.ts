@@ -8,6 +8,24 @@ export default createGlobalStyle`
   *{
     font-family:Helvetica;
   }
+  @media screen and (min-width: 1408px) {
+    .container:not(.is-max-desktop):not(.is-max-widescreen) {
+      max-width: unset;
+    }
+  }
+  @media screen and (min-width: 1216px) {
+    .container:not(.is-max-desktop) {
+      max-width: unset;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .container {
+      max-width: unset;
+    }
+  }
+  .table{
+    background-color: unset;
+  }
   .text-input{
     padding: 10px 12px;
     &:hover, &:focus{

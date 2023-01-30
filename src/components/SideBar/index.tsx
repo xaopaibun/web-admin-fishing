@@ -5,18 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   HomeOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
   EditFilled,
   ReadOutlined,
   BarChartOutlined,
   BellOutlined,
   CommentOutlined,
   NotificationOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 
 import Loading, { loadingRef } from 'components/Loading';
 import { routes } from 'navigations/routes';
+import { logout } from 'containers/Auth/slice';
+import { useAppDispatch } from 'hooks';
 import { Wrapper } from './styles';
 
 const { Sider } = Layout;
@@ -86,7 +87,7 @@ const SideBar: React.FC = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const toggle = () => {};
+  const dispatch = useAppDispatch();
 
   return (
     <Wrapper>
@@ -116,6 +117,16 @@ const SideBar: React.FC = ({ children }) => {
           selectedKeys={[`/${window.location.pathname.split('/')[1]}`]}
           onOpenChange={onOpenChange}
           items={items}
+        />
+        <LogoutOutlined
+          style={{
+            cursor: 'pointer',
+            display: 'block',
+            margin: 'auto',
+            fontSize: 20,
+            color: '#c4c4c4',
+          }}
+          onClick={() => dispatch(logout())}
         />
       </Sider>
       <Layout>

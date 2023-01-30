@@ -146,7 +146,7 @@ const Create: FC = () => {
                   ))}
                 <Upload
                   name="image"
-                  accept=".jpeg, .png"
+                  accept=".jpeg, .png, .jpg"
                   multiple
                   listType="picture-card"
                   showUploadList={false}

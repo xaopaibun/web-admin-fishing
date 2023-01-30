@@ -7,12 +7,12 @@ import {
   DeleteOutlined,
   FormOutlined,
   SearchOutlined,
-  CloudUploadOutlined,
+  // CloudUploadOutlined,
   PlusOutlined,
-  CloudDownloadOutlined,
+  // CloudDownloadOutlined,
 } from '@ant-design/icons';
 import { Option } from 'antd/lib/mentions';
-import { CSVLink } from 'react-csv';
+// import { CSVLink } from 'react-csv';
 
 import { useAppDispatch } from 'hooks';
 import HeaderDashboard from 'components/Header';
@@ -156,7 +156,6 @@ const Dashboard: FC = () => {
   //   };
   // }, []);
 
-  console.log('abcd');
   return (
     <DashboardStyled>
       <HeaderDashboard title="Dashboard" className="header" />
