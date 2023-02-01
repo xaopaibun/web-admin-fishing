@@ -9,8 +9,8 @@ import {
   ReadOutlined,
   BarChartOutlined,
   BellOutlined,
-  CommentOutlined,
-  NotificationOutlined,
+  // CommentOutlined,
+  // NotificationOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
 
@@ -56,18 +56,6 @@ const SideBar: React.FC = ({ children }) => {
       icon: <EditFilled />,
       label: 'Quản lý Users',
       onClick: () => navigate('/users'),
-    },
-    {
-      key: '3',
-      icon: <NotificationOutlined />,
-      label: 'Cài đặt gửi thông báo',
-      onClick: () => navigate('/about'),
-    },
-    {
-      key: '34',
-      icon: <CommentOutlined />,
-      label: 'Tư vấn khách hàng',
-      onClick: () => navigate('/about'),
     },
     {
       key: 'sub4',

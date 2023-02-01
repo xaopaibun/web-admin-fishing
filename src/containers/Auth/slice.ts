@@ -24,6 +24,7 @@ export const authSlice = createSlice({
       // state.signedInEmail = undefined;
       // localStorage.setItem('isLogin', '0');
       localStorage.clear();
+      sessionStorage.removeItem('isLogin');
     },
   },
   extraReducers(builder) {
@@ -35,6 +36,7 @@ export const authSlice = createSlice({
       state.isLogin = true;
       state.loading = false;
       state.user = action.payload.user;
+      sessionStorage.setItem('isLogin', 'true');
       localStorage.setItem('shop-fish-token', action.payload.tokens.access.token);
     });
     builder.addCase(signIn.rejected, (state) => {

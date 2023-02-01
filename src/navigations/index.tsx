@@ -15,6 +15,7 @@ type GuardRouteProps = {
 
 export const Navigations: FC = () => {
   const { isLogin } = useSelector(authSelector);
+  const isLogins = isLogin || !!sessionStorage.getItem('isLogin');
   const renderRoute = useCallback(
     (route, isPrivate?: boolean) => {
       if (!route || !values(route)) {
@@ -26,7 +27,7 @@ export const Navigations: FC = () => {
           key={i}
           element={
             <GuardRoute
-              isLogin={isLogin}
+              isLogin={isLogins}
               isPrivate={!!isPrivate}
               redirectPath={isPrivate && !isLogin ? routes.Login.path : '/'}
             >
