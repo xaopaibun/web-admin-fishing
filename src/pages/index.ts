@@ -6,3 +6,4 @@ export { default as CategoryPage } from './Category';
 export { default as UsersPage } from './Users';
 export { default as OrderPage } from './Order';
 export { default as OrderDetailPage } from './Order/Update';
+export { default as StatisticPage } from './Statistic';

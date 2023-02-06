@@ -35,6 +35,10 @@ export const routes = {
     path: '/order/:id',
     element: <Pages.OrderDetailPage />,
   },
+  StatisticPage: {
+    path: '/statistic',
+    element: <Pages.StatisticPage />,
+  },
 };
 
 export type Routes = typeof routes;

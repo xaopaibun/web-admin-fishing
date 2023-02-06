@@ -61,7 +61,7 @@ const SideBar: React.FC = ({ children }) => {
       key: 'sub4',
       icon: <BarChartOutlined />,
       label: 'Báo cáo doanh thu',
-      children: [{ label: 'option1', key: 'sub4-1' }],
+      onClick: () => navigate('/statistic'),
     },
   ];
 
