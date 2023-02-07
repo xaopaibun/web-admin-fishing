@@ -4,6 +4,11 @@ type Props = {};
 
 export default styled.section<Props>`
   .container {
+    .highcharts-title {
+      font-size: 26px !important;
+      font-weight: bold !important;
+      margin-top: 50px !important;
+    }
     .form-search {
       width: 100%;
       display: flex;

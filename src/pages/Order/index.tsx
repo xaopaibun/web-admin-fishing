@@ -6,7 +6,7 @@ import HeaderDashboard from 'components/Header';
 import { FormikProvider, useFormik } from 'formik';
 import { Form, Input, SubmitButton } from 'formik-antd';
 import { DeleteOutlined, FormOutlined } from '@ant-design/icons';
-import { message, Table, Tag } from 'antd';
+import { message, Segmented, Table, Tag } from 'antd';
 import { Order } from 'types';
 import { routes } from 'navigations/routes';
 import { generatePath, useNavigate } from 'react-router-dom';
@@ -230,6 +230,19 @@ const OrderPage: FC = () => {
             </div>
           </Form>
         </FormikProvider>
+        <Segmented
+          options={['Đang chờ xác nhận', 'Đã xác nhận đơn hàng', 'Đã huỷ', 'Đã hoàn thành']}
+          onChange={(value) => {
+            console.log(value);
+            switch (value) {
+              case 'Đang chờ xác nhận':
+                break;
+
+              default:
+                break;
+            }
+          }}
+        />
         <Table
           rowKey="i_id"
           loading={loading}
