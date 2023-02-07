@@ -92,3 +92,11 @@ export interface Order {
   }>;
   date: string;
 }
+
+export interface DataStatistic {
+  _id: {
+    year: number;
+    month?: number;
+  };
+  total_revenue: number;
+}

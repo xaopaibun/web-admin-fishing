@@ -2,14 +2,14 @@ import { Form, Select, SubmitButton } from 'formik-antd';
 import { FormikProvider, useFormik } from 'formik';
 import { FC, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { jsPDF } from 'jspdf';
+// import { jsPDF } from 'jspdf';
 import { useAppDispatch } from 'hooks';
 import HeaderDashboard from 'components/Header';
 import { loadingRef } from 'components/Loading';
 import { generatePath, useNavigate, useParams } from 'react-router-dom';
 import { routes } from 'navigations/routes';
 import { Order } from 'types';
-import { Button, Card } from 'antd';
+import { Card } from 'antd';
 import { getOrderDetailByIDThunk, updateOrderByIDThunk } from '../thunk';
 import { orderSelector } from '../selectors';
 import CreateProductStyled from './styles';
@@ -124,20 +124,6 @@ const Update: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderDetail]);
 
-  const handleExportPDF = () => {
-    const doc = new jsPDF();
-
-    doc.text(
-      `Ho Ten: ${formik.values.full_name} \n Email: ${formik.values.email} \n Địa chỉ: ${
-        formik.values.address
-      } \n Tổng tiền: ${formik.values.total_money} $ \n Ngày đặt hàng:  ${
-        formik.values.date && new Date(formik.values.date).toISOString().slice(0, 10)
-      }`,
-      10,
-      10
-    );
-    doc.save(`${formik.values.phone_number}.pdf`);
-  };
   return (
     <>
       <HeaderDashboard title="Cập nhật đơn hàng" className="header" />
@@ -220,7 +206,7 @@ const Update: FC = () => {
                 ))}
               </Select>
             </Form.Item>
-            <Button onClick={handleExportPDF}>Xuất hoá đơn</Button>
+            {/* <Button onClick={handleExportPDF}>Xuất hoá đơn</Button> */}
           </Card>
           <Form>
             <div className="wrap-submit">

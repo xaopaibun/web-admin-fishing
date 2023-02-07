@@ -1,20 +1,36 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import HeaderDashboard from 'components/Header';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { Card, Col, DatePicker, DatePickerProps, Row, Statistic } from 'antd';
+import { orderService } from 'services';
+import { DataStatistic } from 'types';
+import { loadingRef } from 'components/Loading';
 import StatisticStyled from './styles';
 
 const StatisticPage: FC = () => {
+  const [yearSelect, setYearSelect] = useState<string | number>('2023');
+  const [dataStatistic, setDataStatistic] = useState<{
+    statistic_month: Array<DataStatistic>;
+    statistic_year: Array<DataStatistic>;
+
+    statistic_product: Array<{ _id: string; totalQuantity: number }>;
+  }>({} as { statistic_month: []; statistic_year: []; statistic_product: [] });
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   const options = {
     chart: {
-      type: 'line',
+      type: 'areaspline',
     },
     xAxis: {
-      categories: Array.from({ length: 12 }).map((value, i) => `Tháng ${i + 1}`),
+      categories: dataStatistic.statistic_month
+        ?.map((value) => value._id.month)
+        ?.map((value) => `Tháng ${value}`),
     },
     title: {
-      text: 'Doanh thu shop năm 2022',
+      text: `Biểu đồ thể hiện doanh thu từng tháng trong năm ${yearSelect}`,
     },
     yAxis: {
       title: {
@@ -25,18 +41,81 @@ const StatisticPage: FC = () => {
       {
         name: 'Doanh thu (VND)',
         allowPointSelect: true,
-        data: [
-          8005000, 4050000, 2420000, 7500000, 1230000, 5350000, 4356000, 5300000, 13000000, 8700000,
-          9830000, 4500000,
-        ],
+        data: dataStatistic.statistic_month?.map((value) => value.total_revenue),
       },
     ],
   };
+
+  const optionsTwo = {
+    chart: {
+      type: 'pie',
+    },
+    xAxis: {
+      categories: dataStatistic.statistic_product?.map((value) => value._id),
+    },
+    title: {
+      text: `Top 5 sản phẩm bán chạy trong năm ${yearSelect}`,
+    },
+    yAxis: {
+      title: {
+        text: 'sản phẩm',
+      },
+    },
+    series: [
+      {
+        name: 'Doanh thu (VND)',
+        allowPointSelect: true,
+        data: dataStatistic.statistic_product?.map((value) => value.totalQuantity),
+      },
+    ],
+  };
+
+  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+    setYearSelect(dateString);
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const { data } = await orderService.statisticOrderByYear(yearSelect);
+        setDataStatistic(data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    })();
+  }, [yearSelect]);
+
+  useEffect(() => {
+    loadingRef.current?.isLoading(loading);
+  }, [loading]);
+
   return (
     <StatisticStyled>
       <HeaderDashboard title="Báo cáo thống kê doanh thu" className="header" />
       <div className="container">
+        <Row gutter={16}>
+          {dataStatistic.statistic_year?.map((value) => (
+            <Col span={6}>
+              <Card>
+                <Statistic
+                  title={`Tổng doanh thu năm ${value._id.year} (VND)`}
+                  value={value.total_revenue}
+                />
+              </Card>
+            </Col>
+          ))}
+        </Row>
+        <div className="mr-50"></div>
+        <div className="form-search">
+          <DatePicker onChange={onChange} picker="year" />
+        </div>
+        <div className="mr-50"></div>
         <HighchartsReact highcharts={Highcharts} options={options} />
+        <div className="mr-50"></div>
+        <HighchartsReact highcharts={Highcharts} options={optionsTwo} />
+        <Card>TOP 5:</Card>
       </div>
     </StatisticStyled>
   );

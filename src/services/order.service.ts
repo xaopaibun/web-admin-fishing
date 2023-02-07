@@ -45,6 +45,17 @@ class OrderService {
     };
     return this._axios(request);
   }
+  statisticOrderByYear(year: number | string): AxiosPromise<{
+    statistic_month: Array<Types.DataStatistic>;
+    statistic_year: Array<Types.DataStatistic>;
+    statistic_product: Array<{ _id: string; totalQuantity: number }>;
+  }> {
+    const request: AxiosRequestConfig = {
+      url: `/order/statistic-by-year/${year}`,
+      method: 'GET',
+    };
+    return this._axios(request);
+  }
 }
 
 export const orderService = new OrderService(instance);
