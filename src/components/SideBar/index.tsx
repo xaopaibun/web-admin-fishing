@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
   HomeOutlined,
-  EditFilled,
+  UsergroupAddOutlined,
   ReadOutlined,
   BarChartOutlined,
-  BellOutlined,
+  ShoppingOutlined,
   // CommentOutlined,
   // NotificationOutlined,
   LogoutOutlined,
@@ -28,42 +28,44 @@ const SideBar: React.FC = ({ children }) => {
   const navigate = useNavigate();
 
   const onOpenChange = (keys: string[]) => {
-    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    const latestOpenKey = keys?.find((key) => openKeys.indexOf(key) === -1);
     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
   };
 
   const items: ItemType[] = [
     {
-      key: '1',
+      key: '',
       icon: <HomeOutlined />,
       label: 'Trang chủ',
       onClick: () => navigate(routes.Dashboard.path),
     },
     {
-      key: 'sub2',
+      key: 'category',
       icon: <ReadOutlined />,
       label: 'Danh sách loại',
       onClick: () => navigate('/category'),
     },
     {
-      key: '2.5',
-      icon: <BellOutlined />,
+      key: 'order',
+      icon: <ShoppingOutlined />,
       label: 'Quản lý đơn hàng',
       onClick: () => navigate(routes.OrderPage.path),
     },
     {
-      key: '2',
-      icon: <EditFilled />,
+      key: 'users',
+      icon: <UsergroupAddOutlined />,
       label: 'Quản lý Users',
       onClick: () => navigate('/users'),
     },
     {
-      key: 'sub4',
+      key: 'statistic',
       icon: <BarChartOutlined />,
       label: 'Báo cáo doanh thu',
       onClick: () => navigate('/statistic'),
     },
   ];
+
+  console.log('window', window.location.pathname.split('/')[1]);
 
   useEffect(() => {
     const openKey = items.find((item) =>
@@ -102,8 +104,8 @@ const SideBar: React.FC = ({ children }) => {
         <Menu
           mode="inline"
           openKeys={openKeys}
-          selectedKeys={[`/${window.location.pathname.split('/')[1]}`]}
-          onOpenChange={onOpenChange}
+          selectedKeys={[`${window.location.pathname.split('/')[1]}`]}
+          onClick={({ keyPath }: { keyPath: string[] }) => onOpenChange(keyPath)}
           items={items}
         />
         <LogoutOutlined
